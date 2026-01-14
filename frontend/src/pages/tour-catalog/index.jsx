@@ -359,7 +359,7 @@ const TourCatalog = () => {
   return (
     <>
       <Helmet>
-        <title>Tour Catalog - Discover Educational Tours | EduTours</title>
+        <title>Tour Catalog - Discover Educational Tours | SGW Lyons</title>
         <meta name="description" content="Browse comprehensive educational tour packages for Indian students. Filter by destination, duration, budget, and educational focus. Book learning camps and industrial tours." />
       </Helmet>
       <div className="min-h-screen bg-background">

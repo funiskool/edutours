@@ -49,7 +49,7 @@ const Footer = () => {
               <div className="w-12 h-12 bg-primary/10 rounded-md flex items-center justify-center">
                 <Icon name="GraduationCap" size={28} color="var(--color-primary)" />
               </div>
-              <span className="text-xl font-heading font-semibold">EduTours</span>
+              <span className="text-xl font-heading font-semibold">SGW Lyons</span>
             </Link>
             <p className="text-sm md:text-base text-secondary-foreground/80 mb-4 md:mb-6 max-w-sm">
               India's leading educational tour platform connecting students with enriching learning experiences across the country and beyond.
@@ -138,7 +138,7 @@ const Footer = () => {
         <div className="pt-8 border-t border-secondary-foreground/20">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-secondary-foreground/70 font-caption text-center md:text-left">
-              © {currentYear} EduTours. All rights reserved. Registered with Ministry of Tourism, Government of India.
+              © {currentYear} SGW Lyons. All rights reserved. Registered with Ministry of Tourism, Government of India.
             </p>
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2">
@@ -150,7 +150,7 @@ const Footer = () => {
               <div className="flex items-center gap-2">
                 <Icon name="Mail" size={16} className="text-secondary-foreground/70" />
                 <span className="text-sm text-secondary-foreground/70 font-caption">
-                  support@edutours.in
+                  support@SGW Lyons.in
                 </span>
               </div>
             </div>

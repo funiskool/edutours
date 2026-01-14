@@ -34,7 +34,7 @@ const TrustSection = () => {
       <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-8">
         <div className="text-center mb-8 md:mb-12">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-foreground mb-3 md:mb-4">
-            Why Choose EduTours?
+            Why Choose SGW Lyons?
           </h2>
           <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
             India's most trusted educational tour platform with proven safety and quality standards

@@ -101,7 +101,7 @@ const AdminPanel = () => {
   return (
     <>
       <Helmet>
-        <title>Admin Panel - Tour Management | EduTours</title>
+        <title>Admin Panel - Tour Management | SGW Lyons</title>
         <meta name="description" content="Manage tour packages, pricing, images, SEO metadata, and customer bookings" />
       </Helmet>
       <div className="min-h-screen bg-background">

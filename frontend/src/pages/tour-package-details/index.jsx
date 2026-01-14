@@ -411,9 +411,9 @@ const TourPackageDetails = () => {
       }],
 
       additionalTerms: [
-      "Cancellations must be submitted in writing via email to bookings@edutours.com",
+      "Cancellations must be submitted in writing via email to bookings@SGW Lyons.com",
       "Refunds will be processed within 15 working days of cancellation request",
-      "In case of tour cancellation by EduTours, full refund will be provided within 7 days",
+      "In case of tour cancellation by SGW Lyons, full refund will be provided within 7 days",
       "Medical emergencies with valid doctor's certificate may be considered for special refund",
       "Group bookings have different cancellation terms - please contact for details"]
 
@@ -446,7 +446,7 @@ const TourPackageDetails = () => {
   return (
     <>
       <Helmet>
-        <title>{tourData?.title} - EduTours</title>
+        <title>{tourData?.title} - SGW Lyons</title>
         <meta name="description" content={tourData?.overview?.description?.substring(0, 160)} />
       </Helmet>
       <div className="min-h-screen bg-background">
@@ -552,7 +552,7 @@ const TourPackageDetails = () => {
                   <div className="w-10 h-10 bg-primary/10 rounded-md flex items-center justify-center">
                     <Icon name="GraduationCap" size={24} color="var(--color-primary)" />
                   </div>
-                  <span className="text-lg font-heading font-semibold text-foreground">EduTours</span>
+                  <span className="text-lg font-heading font-semibold text-foreground">SGW Lyons</span>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Empowering students through educational travel experiences across India and beyond.
@@ -584,7 +584,7 @@ const TourPackageDetails = () => {
                   </li>
                   <li className="flex items-start gap-2">
                     <Icon name="Mail" size={16} className="mt-0.5 text-primary flex-shrink-0" />
-                    <span className="text-sm text-muted-foreground">info@edutours.com</span>
+                    <span className="text-sm text-muted-foreground">info@SGW Lyons.com</span>
                   </li>
                 </ul>
               </div>
@@ -607,7 +607,7 @@ const TourPackageDetails = () => {
 
             <div className="pt-6 border-t border-border text-center">
               <p className="text-sm text-muted-foreground">
-                &copy; {new Date()?.getFullYear()} EduTours. All rights reserved.
+                &copy; {new Date()?.getFullYear()} SGW Lyons. All rights reserved.
               </p>
             </div>
           </div>

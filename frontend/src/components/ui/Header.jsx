@@ -43,11 +43,17 @@ const Header = () => {
       <div className="max-w-[1280px] mx-auto px-6">
         <div className="flex items-center justify-between h-[72px]">
           <div className="flex items-center gap-12">
-            <Link to="/homepage" className="flex items-center gap-3 transition-smooth hover-lift">
-              <div className="w-12 h-12 bg-primary/10 rounded-md flex items-center justify-center transition-smooth">
-                <Icon name="GraduationCap" size={28} color="var(--color-primary)" />
+            <Link
+              to="/homepage"
+              className="flex items-center gap-3 transition-smooth hover-lift"
+            >
+              <div className="w-48 h-24 bg-primary/10 rounded-md flex items-center justify-center transition-smooth">
+                <img
+                  src="assets/images/logo.jpeg"
+                  alt="SGW Lyons"
+                  className="h-14 w-auto object-contain"
+                />
               </div>
-              <span className="text-xl font-heading font-semibold text-foreground">EduTours</span>
             </Link>
 
             <nav className="hidden lg:flex items-center gap-2">
@@ -60,8 +66,8 @@ const Header = () => {
                     to={item?.path}
                     className={`flex items-center gap-2 px-6 py-3 rounded-md font-medium transition-smooth hover-lift ${
                       isActive
-                        ? 'bg-primary text-primary-foreground'
-                        : 'text-foreground hover:bg-muted'
+                        ? "bg-primary text-primary-foreground"
+                        : "text-foreground hover:bg-muted"
                     }`}
                   >
                     <Icon name={item?.icon} size={20} />
@@ -91,8 +97,16 @@ const Header = () => {
                   <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
                     <Icon name="User" size={20} color="var(--color-primary)" />
                   </div>
-                  <span className="font-medium text-foreground">My Profile</span>
-                  <Icon name="ChevronDown" size={16} className={`transition-smooth ${isUserMenuOpen ? 'rotate-180' : ''}`} />
+                  <span className="font-medium text-foreground">
+                    My Profile
+                  </span>
+                  <Icon
+                    name="ChevronDown"
+                    size={16}
+                    className={`transition-smooth ${
+                      isUserMenuOpen ? "rotate-180" : ""
+                    }`}
+                  />
                 </button>
 
                 {isUserMenuOpen && (
@@ -147,7 +161,7 @@ const Header = () => {
             aria-label="Toggle mobile menu"
             aria-expanded={isMobileMenuOpen}
           >
-            <Icon name={isMobileMenuOpen ? 'X' : 'Menu'} size={24} />
+            <Icon name={isMobileMenuOpen ? "X" : "Menu"} size={24} />
           </button>
         </div>
       </div>
@@ -159,11 +173,21 @@ const Header = () => {
           />
           <div className="fixed inset-0 z-50 lg:hidden bg-card overflow-y-auto">
             <div className="flex items-center justify-between h-[72px] px-6 border-b border-border">
-              <Link to="/homepage" onClick={closeMobileMenu} className="flex items-center gap-3">
+              <Link
+                to="/homepage"
+                onClick={closeMobileMenu}
+                className="flex items-center gap-3"
+              >
                 <div className="w-12 h-12 bg-primary/10 rounded-md flex items-center justify-center">
-                  <Icon name="GraduationCap" size={28} color="var(--color-primary)" />
+                  <Icon
+                    name="GraduationCap"
+                    size={28}
+                    color="var(--color-primary)"
+                  />
                 </div>
-                <span className="text-xl font-heading font-semibold text-foreground">EduTours</span>
+                <span className="text-xl font-heading font-semibold text-foreground">
+                  SGW Lyons
+                </span>
               </Link>
               <button
                 onClick={closeMobileMenu}
@@ -185,8 +209,8 @@ const Header = () => {
                     onClick={closeMobileMenu}
                     className={`flex items-center gap-3 px-6 py-4 rounded-md font-medium transition-smooth ${
                       isActive
-                        ? 'bg-primary text-primary-foreground'
-                        : 'text-foreground hover:bg-muted'
+                        ? "bg-primary text-primary-foreground"
+                        : "text-foreground hover:bg-muted"
                     }`}
                   >
                     <Icon name={item?.icon} size={22} />
@@ -226,7 +250,12 @@ const Header = () => {
                   </div>
                 ) : (
                   <Link to="/login" onClick={closeMobileMenu}>
-                    <Button variant="default" fullWidth iconName="LogIn" iconPosition="left">
+                    <Button
+                      variant="default"
+                      fullWidth
+                      iconName="LogIn"
+                      iconPosition="left"
+                    >
                       Login
                     </Button>
                   </Link>

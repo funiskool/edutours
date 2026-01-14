@@ -346,7 +346,7 @@ const BookingFlow = () => {
                   </div>
                   <div className="flex items-center gap-2">
                     <Icon name="Mail" size={16} color="var(--color-primary)" />
-                    <span className="text-sm font-medium text-foreground">support@edutours.com</span>
+                    <span className="text-sm font-medium text-foreground">support@SGW Lyons.com</span>
                   </div>
                 </div>
               </div>
@@ -358,7 +358,7 @@ const BookingFlow = () => {
         <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-muted-foreground font-caption">
-              © {new Date()?.getFullYear()} EduTours. All rights reserved.
+              © {new Date()?.getFullYear()} SGW Lyons. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
               <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-smooth font-caption">

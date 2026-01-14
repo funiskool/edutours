@@ -35,7 +35,7 @@ const RegistrationPrompt = () => {
     <div className="space-y-6">
       <div className="text-center">
         <h3 className="text-xl md:text-2xl font-heading font-semibold text-foreground mb-2">
-          New to EduTours?
+          New to SGW Lyons?
         </h3>
         <p className="text-sm text-muted-foreground font-caption">
           Create an account to unlock exclusive features and benefits

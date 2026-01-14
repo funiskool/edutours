@@ -10,7 +10,7 @@
 @layer base {
   :root {
     /* Primary Colors */
-    --color-primary: #E67E22; /* orange-600 - Warm saffron representing knowledge and energy */
+    --color-primary: #e41919; /* orange-600 - Warm saffron representing knowledge and energy */
     --color-primary-foreground: #FFFFFF; /* white */
     
     /* Secondary Colors */

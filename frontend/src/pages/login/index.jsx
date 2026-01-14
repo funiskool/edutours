@@ -27,7 +27,7 @@ const Login = () => {
                     <span className="font-caption">Back to Home</span>
                   </Link>
                   <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mb-4">
-                    Welcome Back to EduTours
+                    Welcome Back to SGW Lyons
                   </h1>
                   <p className="text-base md:text-lg text-muted-foreground font-caption max-measure">
                     Sign in to access your educational tour bookings, saved favorites, and personalized recommendations for enriching learning experiences.
@@ -73,7 +73,7 @@ const Login = () => {
                         </div>
                       </div>
                       <p className="text-sm text-card-foreground font-caption">
-                        "EduTours made our school trip to historical monuments an unforgettable learning experience!"
+                        "SGW Lyons made our school trip to historical monuments an unforgettable learning experience!"
                       </p>
                       <p className="text-xs text-card-foreground/80 font-caption mt-2">
                         - Priya Sharma, Class 10, Delhi Public School
@@ -117,11 +117,11 @@ const Login = () => {
                         <span className="font-medium">1800-123-4567</span>
                       </a>
                       <a
-                        href="mailto:support@edutours.com"
+                        href="mailto:support@SGW Lyons.com"
                         className="flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-smooth">
 
                         <Icon name="Mail" size={16} />
-                        <span className="font-medium">support@edutours.com</span>
+                        <span className="font-medium">support@SGW Lyons.com</span>
                       </a>
                     </div>
                   </div>
@@ -138,10 +138,10 @@ const Login = () => {
               <div className="w-10 h-10 bg-primary/10 rounded-md flex items-center justify-center">
                 <Icon name="GraduationCap" size={24} color="var(--color-primary)" />
               </div>
-              <span className="text-lg font-heading font-semibold text-foreground">EduTours</span>
+              <span className="text-lg font-heading font-semibold text-foreground">SGW Lyons</span>
             </div>
             <p className="text-sm text-muted-foreground font-caption text-center md:text-left">
-              © {new Date()?.getFullYear()} EduTours. All rights reserved. Empowering education through travel.
+              © {new Date()?.getFullYear()} SGW Lyons. All rights reserved. Empowering education through travel.
             </p>
             <div className="flex items-center gap-4">
               <Link to="/terms" className="text-sm text-muted-foreground hover:text-primary transition-smooth font-caption">

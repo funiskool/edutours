@@ -158,7 +158,7 @@ const Homepage = () => {
     avatar: "https://img.rocket.new/generatedImages/rocket_gen_img_17591a98c-1763295472530.png",
     avatarAlt: "Professional headshot of young Indian female student with long black hair wearing blue school uniform smiling warmly at camera",
     rating: 5,
-    content: "The Golden Triangle tour was absolutely amazing! We learned so much about Indian history and the monuments were breathtaking. Our guide was very knowledgeable and made everything interesting. Highly recommend EduTours!",
+    content: "The Golden Triangle tour was absolutely amazing! We learned so much about Indian history and the monuments were breathtaking. Our guide was very knowledgeable and made everything interesting. Highly recommend SGW Lyons!",
     tourName: "Golden Triangle Heritage Tour"
   },
   {
@@ -168,7 +168,7 @@ const Homepage = () => {
     avatar: "https://img.rocket.new/generatedImages/rocket_gen_img_198499785-1763295471528.png",
     avatarAlt: "Professional headshot of young Indian male engineering student with short black hair wearing casual shirt with confident expression",
     rating: 5,
-    content: "The industrial tour to Bangalore was eye-opening. We visited top tech companies and got insights into real-world software development. This experience helped me understand my career path better. Thank you EduTours!",
+    content: "The industrial tour to Bangalore was eye-opening. We visited top tech companies and got insights into real-world software development. This experience helped me understand my career path better. Thank you SGW Lyons!",
     tourName: "Bangalore Tech Valley Tour"
   },
   {
@@ -188,7 +188,7 @@ const Homepage = () => {
     avatar: "https://img.rocket.new/generatedImages/rocket_gen_img_1f755ba97-1763300560912.png",
     avatarAlt: "Professional headshot of middle-aged Indian male teacher with glasses and short black hair wearing formal shirt with friendly expression",
     rating: 5,
-    content: "As a teacher, I've organized multiple tours with EduTours. Their attention to safety, educational content, and student engagement is exceptional. The space science tour was particularly well-organized and informative.",
+    content: "As a teacher, I've organized multiple tours with SGW Lyons. Their attention to safety, educational content, and student engagement is exceptional. The space science tour was particularly well-organized and informative.",
     tourName: "Space Science Tour"
   }];
 
