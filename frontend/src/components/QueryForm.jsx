@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { countryCodes } from "../data/CountryCodes";
+import { countryCodes } from "../data/countryCodes";
 
 export default function QueryForm() {
   const [openDropdown, setOpenDropdown] = useState(false);

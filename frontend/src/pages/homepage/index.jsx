@@ -11,6 +11,7 @@ import NewsletterSection from './components/NewsletterSection';
 import Footer from './components/Footer';
 import Icon from '../../components/AppIcon';
 import Button from '../../components/ui/Button';
+import SecondaryNavbar from 'components/ui/SecondaryNavbar';
 
 const Homepage = () => {
   const navigate = useNavigate();
@@ -253,7 +254,8 @@ const Homepage = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="pt-[72px]">
+      <SecondaryNavbar />
+      <main className="pt-[120px]">
         <HeroSection onSearch={handleSearch} />
 
         <section className="py-12 md:py-16 lg:py-20">
