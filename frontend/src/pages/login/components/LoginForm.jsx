@@ -26,51 +26,98 @@ const AuthForm = () => {
   };
 
   // ===============================
+  // GET USER ROLE
+  // ===============================
+  const getUserRole = async (userId) => {
+    const { data, error } = await supabase
+      .from("user_profiles")
+      .select("role")
+      .eq("id", userId)
+      .single();
+
+    if (error) throw error;
+    return data.role;
+  };
+
+  // ===============================
+  // SYNC USER PROFILE
+  // ===============================
+  const syncUserProfile = async (user) => {
+    const { error } = await supabase.from("user_profiles").upsert({
+      id: user.id,
+      email: user.email,
+      full_name: user.user_metadata?.full_name || "",
+      phone: user.user_metadata?.phone || "",
+    });
+
+    if (error) throw error;
+  };
+
+  // ===============================
   // LOGIN
   // ===============================
   const loginUser = async () => {
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email: formData.email,
-    password: formData.password,
-  });
-
-  if (error) throw error;
-
-  await syncUserProfile(data.user);
-};
-
-
-  const syncUserProfile = async (user) => {
-  const { error } = await supabase
-    .from("user_profiles")
-    .upsert({
-      id: user.id,
-      full_name: user.user_metadata.full_name,
-      email: user.email,
-      phone: user.user_metadata.phone,
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: formData.email,
+      password: formData.password,
     });
 
-  if (error) throw error;
-};
+    if (error) throw error;
+
+    try {
+      await syncUserProfile(data.user);
+    } catch (syncError) {
+      console.error("Profile sync error:", syncError);
+      // Continue anyway - profile might already exist
+    }
+
+    // Get user name from database
+    try {
+      const { data: userProfile, error: profileError } = await supabase
+        .from("user_profiles")
+        .select("full_name")
+        .eq("id", data.user.id)
+        .single();
+
+      if (profileError) throw profileError;
+      console.log("User Name:", userProfile.full_name);
+    } catch (nameError) {
+      console.error("Error fetching user name:", nameError);
+    }
+
+    try {
+      const role = await getUserRole(data.user.id);
+      if (role === "admin") {
+        navigate("/admin-dashboard");
+      } else {
+        navigate("/user-dashboard");
+      }
+    } catch (roleError) {
+      console.error("Get role error:", roleError);
+      // Default to user if role lookup fails
+      navigate("/user-dashboard");
+    }
+  };
 
   // ===============================
   // SIGNUP
   // ===============================
   const signupUser = async () => {
-  const { error } = await supabase.auth.signUp({
-    email: formData.email,
-    password: formData.password,
-    options: {
-      data: {
-        full_name: formData.name,
-        phone: formData.phone,
+    const { error } = await supabase.auth.signUp({
+      email: formData.email,
+      password: formData.password,
+      options: {
+        data: {
+          full_name: formData.name,
+          phone: formData.phone,
+        },
       },
-    },
-  });
+    });
 
-  if (error) throw error;
-};
+    if (error) throw error;
 
+    setSuccess("Signup successful! Please verify your email.");
+  };
 
   // ===============================
   // FORM SUBMIT
@@ -78,21 +125,16 @@ const AuthForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    setSuccess("");
     setLoading(true);
 
     try {
       if (mode === "login") {
         await loginUser();
-        navigate("/user-dashboard");
       } else {
         await signupUser();
-        setSuccess(
-          "Signup successful! Please check your email to confirm your account."
-        );
       }
     } catch (err) {
-      setError(err.message || "Something went wrong. Please try again.");
+      setError(err.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
@@ -105,117 +147,71 @@ const AuthForm = () => {
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `${window.location.origin}/user-dashboard`,
+        redirectTo: `${window.location.origin}/auth/callback`,
       },
     });
   };
 
   return (
     <div className="w-full max-w-md mx-auto bg-card p-8 rounded-xl shadow-lg">
-      {/* Header */}
       <div className="text-center mb-6">
         <h2 className="text-2xl font-bold">
-          {mode === "login" ? "Welcome Back" : "Create Your Account"}
+          {mode === "login" ? "Welcome Back" : "Create Account"}
         </h2>
-        <p className="text-sm text-muted-foreground mt-1">
-          {mode === "login"
-            ? "Sign in to continue"
-            : "Join Funiskool and start your journey"}
-        </p>
       </div>
 
-      {/* Error / Success */}
-      {error && (
-        <p className="mb-4 text-sm text-red-500 text-center">{error}</p>
-      )}
-      {success && (
-        <p className="mb-4 text-sm text-green-600 text-center">{success}</p>
-      )}
+      {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+      {success && <p className="text-green-600 text-center mb-4">{success}</p>}
 
-      {/* Animated Form */}
       <AnimatePresence mode="wait">
         <motion.form
           key={mode}
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -40 }}
-          transition={{ duration: 0.35 }}
+          transition={{ duration: 0.3 }}
           onSubmit={handleSubmit}
           className="space-y-4"
         >
           {mode === "signup" && (
             <>
-              <Input
-                name="name"
-                label="Full Name"
-                placeholder="Enter your full name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-              />
-
-              <Input
-                name="phone"
-                label="Phone Number"
-                placeholder="Enter your phone number"
-                value={formData.phone}
-                onChange={handleChange}
-                required
-              />
+              <Input name="name" label="Full Name" onChange={handleChange} />
+              <Input name="phone" label="Phone" onChange={handleChange} />
             </>
           )}
 
           <Input
             name="email"
-            type="email"
             label="Email"
-            placeholder="Enter your email"
-            value={formData.email}
-            onChange={handleChange}
+            type="email"
             required
+            onChange={handleChange}
           />
-
           <Input
             name="password"
-            type="password"
             label="Password"
-            placeholder="Enter password"
-            value={formData.password}
-            onChange={handleChange}
+            type="password"
             required
+            onChange={handleChange}
           />
 
-          <Button type="submit" fullWidth size="lg" disabled={loading}>
-            {loading
-              ? "Please wait..."
-              : mode === "login"
-              ? "Login"
-              : "Sign Up"}
+          <Button type="submit" fullWidth disabled={loading}>
+            {loading ? "Please wait..." : mode === "login" ? "Login" : "Sign Up"}
           </Button>
         </motion.form>
       </AnimatePresence>
 
-      {/* Divider */}
-      <div className="my-6 flex items-center">
-        <div className="flex-1 border-t border-border" />
-        <span className="px-3 text-xs text-muted-foreground">OR</span>
-        <div className="flex-1 border-t border-border" />
-      </div>
+      <div className="my-6 text-center text-sm">OR</div>
 
-      {/* Google Login */}
       <Button variant="outline" fullWidth onClick={handleGoogleLogin}>
         <Icon name="Mail" size={18} className="mr-2" />
         Continue with Google
       </Button>
 
-      {/* Switch */}
       <p className="text-center text-sm mt-6">
-        {mode === "login"
-          ? "Don’t have an account?"
-          : "Already have an account?"}
+        {mode === "login" ? "No account?" : "Already have one?"}
         <button
-          type="button"
-          className="ml-2 text-primary font-medium hover:underline"
+          className="ml-2 text-primary font-medium"
           onClick={() => setMode(mode === "login" ? "signup" : "login")}
         >
           {mode === "login" ? "Sign Up" : "Login"}

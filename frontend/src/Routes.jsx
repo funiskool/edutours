@@ -11,6 +11,7 @@ import UserDashboard from './pages/user-dashboard';
 import Homepage from './pages/homepage';
 import AdminPanel from './pages/admin-panel';
 import QueryForm from "components/QueryForm";
+import AuthCallback from "pages/login/components/AuthCallback";
 
 
 const Routes = () => {
@@ -29,6 +30,7 @@ const Routes = () => {
         <Route path="/homepage" element={<Homepage />} />
         <Route path="/admin-panel" element={<AdminPanel />} />
         <Route path="/queryform" element={<QueryForm />} />
+        <Route path="/auth/callback" element={<AuthCallback />} />
         <Route path="*" element={<NotFound />} />
       </RouterRoutes>
       </ErrorBoundary>

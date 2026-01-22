@@ -48,7 +48,7 @@ export default function SecondaryNavbar() {
         initial={{ y: 0 }}
         animate={{ y: show ? 0 : -80 }}
         transition={{ duration: 0.35, ease: "easeInOut" }}
-        className="fixed top-[72px] left-0 right-0 w-full bg-[#081a2f] border-b border-white/10 z-50"
+        className="fixed top-[72px] left-0 right-0 w-full bg-[#081a2f] border-b border-white/10 z-30"
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 h-[48px]">
           
