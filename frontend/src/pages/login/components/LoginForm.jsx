@@ -88,7 +88,7 @@ const AuthForm = () => {
     try {
       const role = await getUserRole(data.user.id);
       if (role === "admin") {
-        navigate("/admin-dashboard");
+        navigate("/admin-panel");
       } else {
         navigate("/user-dashboard");
       }

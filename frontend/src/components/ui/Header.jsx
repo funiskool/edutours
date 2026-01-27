@@ -9,7 +9,8 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  const { user, signOut, loading } = useAuth();
+  const { user, role, signOut, loading } = useAuth();
+
 
   const navigate = useNavigate();
 
@@ -43,6 +44,9 @@ export default function Header() {
   setOpen(false);
   navigate("/");
 };
+
+const dashboardPath =
+  role === "admin" ? "/admin-panel" : "/user-dashboard";
 
 
   if (loading) return null;
@@ -112,21 +116,21 @@ export default function Header() {
               {open && (
                 <div className="absolute right-0 mt-3 w-48 bg-white border rounded-lg shadow-lg overflow-hidden">
                   <Link
-                    to="/user-dashboard"
+                    to={dashboardPath}
                     className="block px-4 py-3 hover:bg-gray-100"
                     onClick={() => setOpen(false)}
                   >
                     My Account
                   </Link>
                   <Link
-                    to="/user-dashboard"
+                    to={dashboardPath}
                     className="block px-4 py-3 hover:bg-gray-100"
                     onClick={() => setOpen(false)}
                   >
                     My Bookings
                   </Link>
                   <Link
-                    to="/user-dashboard"
+                    to={dashboardPath}
                     className="block px-4 py-3 hover:bg-gray-100"
                     onClick={() => setOpen(false)}
                   >

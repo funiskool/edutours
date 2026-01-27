@@ -71,6 +71,7 @@ export const AuthProvider = ({ children }) => {
     userProfile,
     loading,
     profileLoading,
+    role: userProfile?.role ?? "user",
     isAuthenticated: !!user,
     signOut, // ✅ EXPOSED
   };
