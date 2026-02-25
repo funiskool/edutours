@@ -9,8 +9,7 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  const { user, role, signOut, loading } = useAuth();
-
+  const { user, userProfile, role, signOut, loading } = useAuth();
 
   const navigate = useNavigate();
 
@@ -40,16 +39,27 @@ export default function Header() {
   }, []);
 
   const handleLogout = async () => {
-  await signOut();
-  setOpen(false);
-  navigate("/");
-};
+    await signOut();
+    setOpen(false);
+    navigate("/");
+  };
 
-const dashboardPath =
-  role === "admin" ? "/admin-panel" : "/user-dashboard";
+  const dashboardPath = role === "admin" ? "/admin-panel" : "/user-dashboard";
 
+  const getInitials = () => {
+    if (userProfile?.full_name) {
+      const names = userProfile.full_name.trim().split(" ");
+      if (names.length === 1) return names[0][0].toUpperCase();
+      return (names[0][0] + names[names.length - 1][0]).toUpperCase();
+    }
 
-  if (loading) return null;
+    // fallback → email first letter
+    if (user?.email) {
+      return user.email[0].toUpperCase();
+    }
+
+    return "?";
+  };
 
   return (
     <>
@@ -61,7 +71,6 @@ const dashboardPath =
         className="fixed top-0 left-0 right-0 z-40 bg-white backdrop-blur-md shadow-sm"
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2 h-[72px]">
-
           {/* LOGO */}
           <Link to="/">
             <img
@@ -108,43 +117,62 @@ const dashboardPath =
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setOpen(!open)}
-                className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-lg"
+                className="w-10 h-10 rounded-full bg-red-600 text-white font-semibold flex items-center justify-center text-sm uppercase shadow"
               >
-                👤
+                {getInitials()}
               </button>
 
-              {open && (
-                <div className="absolute right-0 mt-3 w-48 bg-white border rounded-lg shadow-lg overflow-hidden">
-                  <Link
-                    to={dashboardPath}
-                    className="block px-4 py-3 hover:bg-gray-100"
-                    onClick={() => setOpen(false)}
-                  >
-                    My Account
-                  </Link>
-                  <Link
-                    to={dashboardPath}
-                    className="block px-4 py-3 hover:bg-gray-100"
-                    onClick={() => setOpen(false)}
-                  >
-                    My Bookings
-                  </Link>
-                  <Link
-                    to={dashboardPath}
-                    className="block px-4 py-3 hover:bg-gray-100"
-                    onClick={() => setOpen(false)}
-                  >
-                    My Wishlist
-                  </Link>
-                  
-                  <button
-                    onClick={handleLogout}
-                    className="w-full text-left px-4 py-3 text-red-600 hover:bg-gray-100"
-                  >
-                    Logout
-                  </button>
-                </div>
-              )}
+             {open && (
+  <div className="absolute right-0 mt-3 w-48 bg-white border rounded-lg shadow-lg overflow-hidden">
+    
+    {role === "admin" ? (
+      // 🛠️ ADMIN VIEW
+      <Link
+        to="/admin-panel"
+        className="block px-4 py-3 hover:bg-gray-100 font-medium"
+        onClick={() => setOpen(false)}
+      >
+        Dashboard
+      </Link>
+    ) : (
+      // 👤 USER VIEW
+      <>
+        <Link
+          to="/user-dashboard"
+          className="block px-4 py-3 hover:bg-gray-100"
+          onClick={() => setOpen(false)}
+        >
+          My Account
+        </Link>
+
+        <Link
+          to="/user-dashboard"
+          className="block px-4 py-3 hover:bg-gray-100"
+          onClick={() => setOpen(false)}
+        >
+          My Bookings
+        </Link>
+
+        <Link
+          to="/user-dashboard"
+          className="block px-4 py-3 hover:bg-gray-100"
+          onClick={() => setOpen(false)}
+        >
+          My Wishlist
+        </Link>
+      </>
+    )}
+
+    {/* LOGOUT (for both) */}
+    <button
+      onClick={handleLogout}
+      className="w-full text-left px-4 py-3 text-red-600 hover:bg-gray-100 border-t"
+    >
+      Logout
+    </button>
+  </div>
+)}
+
             </div>
           )}
         </div>

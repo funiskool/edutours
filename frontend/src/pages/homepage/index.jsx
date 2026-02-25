@@ -2,16 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/ui/Header';
 import HeroSection from './components/HeroSection';
-import TourCategoryCard from './components/TourCategoryCard';
-import FeaturedTourCard from './components/FeaturedTourCard';
-import TrustSection from './components/TrustSection';
-import TestimonialCard from './components/TestimonialCard';
-import DestinationCard from './components/DestinationCard';
-import NewsletterSection from './components/NewsletterSection';
 import Footer from './components/Footer';
-import Icon from '../../components/AppIcon';
-import Button from '../../components/ui/Button';
 import SecondaryNavbar from 'components/ui/SecondaryNavbar';
+import { IncredibleIndiaSection } from './components/IncredibleIndia';
 
 const Homepage = () => {
   const navigate = useNavigate();
@@ -257,145 +250,11 @@ const Homepage = () => {
       <SecondaryNavbar />
       <main className="pt-[120px]">
         <HeroSection onSearch={handleSearch} />
-
-        <section className="py-12 md:py-16 lg:py-20">
-          <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-8">
-            <div className="text-center mb-8 md:mb-12">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-foreground mb-3 md:mb-4">
-                Explore Tour Categories
-              </h2>
-              <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-                Choose from our diverse range of educational tour packages designed for different learning objectives
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
-              {tourCategories?.map((category) =>
-              <TourCategoryCard key={category?.id} category={category} />
-              )}
-            </div>
-          </div>
-        </section>
-
-        <TrustSection />
-
-        <section className="py-12 md:py-16 lg:py-20">
-          <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-8">
-            <div className="flex items-center justify-between mb-8 md:mb-12">
-              <div>
-                <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-foreground mb-2 md:mb-3">
-                  Featured Tours
-                </h2>
-                <p className="text-base md:text-lg text-muted-foreground">
-                  Handpicked educational experiences for students
-                </p>
-              </div>
-              <Button
-                variant="outline"
-                iconName="ArrowRight"
-                iconPosition="right"
-                onClick={() => navigate('/tour-catalog')}
-                className="hidden md:flex">
-
-                View All Tours
-              </Button>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
-              {featuredTours?.map((tour) =>
-              <FeaturedTourCard key={tour?.id} tour={tour} />
-              )}
-            </div>
-
-            <div className="mt-8 text-center md:hidden">
-              <Button
-                variant="outline"
-                iconName="ArrowRight"
-                iconPosition="right"
-                onClick={() => navigate('/tour-catalog')}
-                fullWidth>
-
-                View All Tours
-              </Button>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-12 md:py-16 lg:py-20 bg-muted">
-          <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-8">
-            <div className="text-center mb-8 md:mb-12">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-foreground mb-3 md:mb-4">
-                Popular Destinations
-              </h2>
-              <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-                Discover India's most sought-after educational tour destinations
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-              {popularDestinations?.map((destination) =>
-              <DestinationCard key={destination?.id} destination={destination} />
-              )}
-            </div>
-          </div>
-        </section>
-
-        <section className="py-12 md:py-16 lg:py-20">
-          <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-8">
-            <div className="text-center mb-8 md:mb-12">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-foreground mb-3 md:mb-4">
-                What Students Say
-              </h2>
-              <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-                Real experiences from students and teachers who traveled with us
-              </p>
-            </div>
-
-            <div className="relative">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                {visibleTestimonials?.map((testimonial) =>
-                <TestimonialCard key={testimonial?.id} testimonial={testimonial} />
-                )}
-              </div>
-
-              <button
-                onClick={handlePrevTestimonial}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 w-10 h-10 md:w-12 md:h-12 bg-card hover:bg-primary rounded-full flex items-center justify-center transition-smooth shadow-warm z-10"
-                aria-label="Previous testimonial">
-
-                <Icon name="ChevronLeft" size={24} />
-              </button>
-
-              <button
-                onClick={handleNextTestimonial}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 w-10 h-10 md:w-12 md:h-12 bg-card hover:bg-primary rounded-full flex items-center justify-center transition-smooth shadow-warm z-10"
-                aria-label="Next testimonial">
-
-                <Icon name="ChevronRight" size={24} />
-              </button>
-            </div>
-
-            <div className="flex justify-center gap-2 mt-8">
-              {testimonials?.map((_, index) =>
-              <button
-                key={index}
-                onClick={() => setCurrentTestimonialIndex(index)}
-                className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all ${
-                index === currentTestimonialIndex ?
-                'bg-primary w-8 md:w-12' : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'}`
-                }
-                aria-label={`Go to testimonial ${index + 1}`} />
-
-              )}
-            </div>
-          </div>
-        </section>
-
-        <NewsletterSection />
+        <IncredibleIndiaSection />
       </main>
       <Footer />
-    </div>);
-
+    </div>
+  );
 };
 
 export default Homepage;
